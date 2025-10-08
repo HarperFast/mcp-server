@@ -12,7 +12,7 @@
 	},
 	"prettier": "@harperdb/code-guidelines/prettier",
 	"author": "HarperDB, Inc.",
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"devDependencies": {
 		"@harperdb/code-guidelines": "^0.0.2",
 		"@modelcontextprotocol/sdk": "^1.11.0",
