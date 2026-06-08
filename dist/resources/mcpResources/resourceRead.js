@@ -1,4 +1,4 @@
-import { server, logger } from 'harperdb';
+import { server, logger } from 'harper';
 export const resourceRead = async (params) => {
     try {
         if (!params?.uri) {

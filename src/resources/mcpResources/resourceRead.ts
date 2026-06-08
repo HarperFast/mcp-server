@@ -1,4 +1,4 @@
-import { server, logger } from 'harperdb';
+import { server, logger } from 'harper';
 import type { ReadResourceResult, ReadResourceRequest, TextResourceContents } from '@modelcontextprotocol/sdk/types.js';
 import type { ErrorResponse, ParsedUri } from '../../types/index.js';
 

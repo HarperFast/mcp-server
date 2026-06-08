@@ -9,6 +9,8 @@ export interface ResourceInfo {
 	Resource: {
 		name: string;
 		tableName?: string;
+		databaseName?: string;
+		primaryKey?: string;
 		attributes?: TableAttr[];
 		get: Function;
 		search: Function;

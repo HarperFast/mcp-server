@@ -1,4 +1,4 @@
-import { server } from 'harperdb';
+import { server } from 'harper';
 import type { ListResourcesResult, Resource as MCPResource } from '@modelcontextprotocol/sdk/types.js';
 import type { ResourceInfo, TableAttr } from '../../types/index.js';
 

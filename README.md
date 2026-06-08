@@ -1,8 +1,8 @@
 # Harper MCP Server
 
-A server implementation of the [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol), designed to expose data in HarperDB as structured "Resources" accessible via standardized JSON-RPC calls.
+A server implementation of the [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol), designed to expose data in Harper as structured "Resources" accessible via standardized JSON-RPC calls.
 
-> **Note:** Requires HarperDB version 4.5.10 or later.
+> **Note:** Requires Harper version 5 or later.
 
 ## What is Harper
 [Harper](https://www.harpersystems.dev/) is a Composable Application Platform that merges database, cache, app logic, and messaging into a single runtime. Components like this plug directly into Harper, letting you build and scale distributed services fast, without managing separate systems. Built for geo-distributed apps with low latency and high uptime by default.
@@ -25,12 +25,12 @@ A server implementation of the [Model Context Protocol (MCP)](https://github.com
 ### Prerequisites
 
 - [Harper](https://docs.harperdb.io/docs/deployments/install-harperdb/) stack installed globally.
-- Ensure HarperDB v4.5.10 or later is configured and running with necessary databases and schemas.
+- Ensure Harper v5 or later is configured and running with necessary databases and schemas.
 - Environment variable `HOST` should be set to the base URL of your server. This is used to construct resource URIs.
 
 ### Deploying to Harper
 
-The Harper `mcp-server` is published to NPM and can be installed using [Harper's Operation API](https://docs.harperdb.io/docs/developers/operations-api/components).
+The Harper `mcp-server` is published to npm and can be installed using [Harper's Operation API](https://docs.harperdb.io/docs/developers/operations-api/components).
 
 i.e.
 
@@ -45,7 +45,7 @@ i.e.
 
 ## Security & Authentication
 
-Harper employs role-based, attribute-level security to ensure users access only authorized data. Requests to the server are authenticated using HarperDB's built-in authentication mechanisms, which include Basic Auth, JWT, and mTLS.
+Harper employs role-based, attribute-level security to ensure users access only authorized data. Requests to the server are authenticated using Harper's built-in authentication mechanisms, which include Basic Auth, JWT, and mTLS.
 See [Harper Security Docs](https://docs.harperdb.io/docs/developers/security/) for more details.
 
 ## API
@@ -54,7 +54,7 @@ See [Harper Security Docs](https://docs.harperdb.io/docs/developers/security/) f
 
 The server implements the following MCP methods:
 
-- **`resources/list`**: Lists all available resources (HarperDB tables and custom resources).
+- **`resources/list`**: Lists all available resources (Harper tables and custom resources).
 - **`resources/read`**: Retrieves data for a specific resource based on its URI.
 
 A single endpoint, `/mcp` handles all requests. The server uses JSON-RPC 2.0 for communication.
@@ -65,7 +65,7 @@ A single endpoint, `/mcp` handles all requests. The server uses JSON-RPC 2.0 for
 
 ### Resource URIs
 
-- **Tables:** Resources representing HarperDB tables are accessed via URIs like:
+- **Tables:** Resources representing Harper tables are accessed via URIs like:
 
   ```
   {HOST}/{table_name}

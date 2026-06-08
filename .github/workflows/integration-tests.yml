@@ -1,0 +1,74 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      node-version:
+        description: 'Node.js version'
+        required: true
+        type: choice
+        default: 'all'
+        options:
+          - 'all'
+          - '22'
+          - '24'
+          - '26'
+
+jobs:
+  generate-node-version-matrix:
+    name: Generate Node Version Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      node-versions: ${{ steps.set-node-versions.outputs.node-versions }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set Node versions
+        id: set-node-versions
+        run: |
+          if [ "${{ github.event.inputs.node-version }}" == "all" ] || [ -z "${{ github.event.inputs.node-version }}" ]; then
+            echo "node-versions=[22, 24, 26]" >> $GITHUB_OUTPUT
+          else
+            echo "node-versions=[${{ github.event.inputs.node-version }}]" >> $GITHUB_OUTPUT
+          fi
+
+  integration-tests:
+    name: Integration Tests (Node ${{ matrix.node-version }})
+    needs: [generate-node-version-matrix]
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ${{ fromJSON(needs.generate-node-version-matrix.outputs.node-versions) }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: npm run test:integration
+        env:
+          HARPER_INTEGRATION_TEST_LOG_DIR: /tmp/harper-test-logs
+          FORCE_COLOR: '1'
+
+      - name: Upload Harper logs on failure
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: harper-logs-node-${{ matrix.node-version }}
+          path: /tmp/harper-test-logs/
+          retention-days: 7
