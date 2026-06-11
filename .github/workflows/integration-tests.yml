@@ -30,11 +30,13 @@ jobs:
 
       - name: Set Node versions
         id: set-node-versions
+        env:
+          NODE_VER: ${{ github.event.inputs.node-version }}
         run: |
-          if [ "${{ github.event.inputs.node-version }}" == "all" ] || [ -z "${{ github.event.inputs.node-version }}" ]; then
+          if [ "$NODE_VER" == "all" ] || [ -z "$NODE_VER" ]; then
             echo "node-versions=[22, 24, 26]" >> $GITHUB_OUTPUT
           else
-            echo "node-versions=[${{ github.event.inputs.node-version }}]" >> $GITHUB_OUTPUT
+            echo "node-versions=[$NODE_VER]" >> $GITHUB_OUTPUT
           fi
 
   integration-tests:
