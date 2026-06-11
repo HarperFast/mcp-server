@@ -19,7 +19,7 @@ export const resourceList = (): ListResourcesResult => {
 };
 
 const formatTableForContext = ({ Resource: resource }: ResourceInfo): MCPResource => {
-	const attrs = attributesToString(resource.attributes!);
+	const attrs = attributesToString(resource.attributes ?? []);
 	return {
 		uri: `${process.env.HOST}/${resource.name}`,
 		name: resource.name,
