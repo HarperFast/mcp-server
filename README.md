@@ -1,3 +1,13 @@
+> [!IMPORTANT]
+> **This repository is archived and read-only.**
+>
+> A native MCP feature was added in Harper v5.1. See the [docs](https://docs.harperdb.io/reference/v5/mcp/overview) for more information.
+>
+> It is pinned to **HarperDB v4** and is preserved for reference.
+> It is **not** kept in sync with current releases and may not be supported in latest Harper versions.
+>
+> For up-to-date guides and reference docs, see the [Harper docs](https://docs.harper.fast) and join our [Discord](https://harper.fast/discord).
+
 # Harper MCP Server
 
 A server implementation of the [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol), designed to expose data in HarperDB as structured "Resources" accessible via standardized JSON-RPC calls.
