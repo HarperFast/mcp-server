@@ -1,8 +1,7 @@
 > [!IMPORTANT]
 > **This repository is archived and read-only.**
 >
-> A native MCP feature was added in Harper v5.1. See the [docs](https://docs.harperdb.io/reference/v5/mcp/overview) for more information.
->
+> A native MCP feature was added in Harper v5.1. See the [MCP overview](https://docs.harper.fast/reference/v5/mcp/overview) for more information.
 > It is pinned to **HarperDB v4** and is preserved for reference.
 > It is **not** kept in sync with current releases and may not be supported in latest Harper versions.
 >
