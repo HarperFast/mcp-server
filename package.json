@@ -5,18 +5,20 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsc; harperdb dev .",
-		"server": "tsc; harperdb run .",
+		"dev": "tsc; harper dev .",
+		"server": "tsc; harper run .",
 		"format": "prettier --write .",
-		"postinstall": "npm link harperdb"
+		"test:integration": "harper-integration-test-run integrationTests/**/*.test.ts"
 	},
 	"prettier": "@harperdb/code-guidelines/prettier",
-	"author": "HarperDB, Inc.",
+	"author": "Harper, Inc.",
 	"license": "Apache-2.0",
 	"devDependencies": {
 		"@harperdb/code-guidelines": "^0.0.2",
+		"@harperfast/integration-testing": "^0.4.0",
 		"@modelcontextprotocol/sdk": "^1.11.0",
 		"@types/node": "^22.10.2",
+		"harper": "^5.0.28",
 		"prettier": "^3.4.2",
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.2"

@@ -1,4 +1,4 @@
-import { Resource } from 'harperdb';
+import { Resource } from 'harper';
 import type {
 	JSONRPCRequest,
 	JSONRPCResponse,

@@ -1,4 +1,4 @@
-import { Resource } from 'harperdb';
+import { Resource } from 'harper';
 import { resourceList } from './mcpResources/resourceList.js';
 import { resourceRead } from './mcpResources/resourceRead.js';
 import { MCPMethods } from '../constants/index.js';

@@ -1,4 +1,4 @@
-import { server, logger } from 'harperdb';
+import { server, logger } from 'harper';
 import type { ReadResourceResult, ReadResourceRequest, TextResourceContents } from '@modelcontextprotocol/sdk/types.js';
 import type { ErrorResponse, ParsedUri } from '../../types/index.js';
 
@@ -31,6 +31,10 @@ export const resourceRead = async (
 		});
 
 		if (resourceMatch.Resource.databaseName) {
+			if (!resourceMatch.Resource.primaryKey) {
+				return { contents: [] };
+			}
+
 			const tableData: Record<string, any>[] = [];
 
 			for await (const item of data) {
@@ -76,12 +80,14 @@ const parseRequestUri = (uri: string): ParsedUri => {
 	let start: number | undefined;
 	for (const [key, value] of url.searchParams.entries()) {
 		if (key === 'limit') {
-			limit = parseInt(value, 10);
+			const parsed = parseInt(value, 10);
+			limit = Number.isFinite(parsed) ? parsed : undefined;
 			continue;
 		}
 
 		if (key === 'start') {
-			start = parseInt(value, 10);
+			const parsed = parseInt(value, 10);
+			start = Number.isFinite(parsed) ? parsed : undefined;
 			continue;
 		}
 

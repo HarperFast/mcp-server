@@ -1,1 +1,1 @@
-declare module 'harperdb';
+declare module 'harper';

@@ -1,4 +1,4 @@
-import { server } from 'harperdb';
+import { server } from 'harper';
 export const resourceList = () => {
     const resources = [];
     for (const harperResource of server.resources.values()) {
